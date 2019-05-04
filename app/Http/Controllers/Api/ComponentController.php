@@ -116,11 +116,24 @@ class ComponentController extends AbstractApiController
     public function update(Component $component)
     {
         try {
+
+            switcH(Binput::get('status')) {
+              case 'up':
+                $input = 1;
+              break;
+              case 'down':
+                $input = 4; // Immediate fail
+              break;
+              default:
+                $input = Binput::get('status');
+              break;
+            }
+
             execute(new UpdateComponentCommand(
                 $component,
                 Binput::get('name'),
                 Binput::get('description'),
-                Binput::get('status'),
+                $input,
                 Binput::get('link'),
                 Binput::get('order'),
                 Binput::get('group_id'),
