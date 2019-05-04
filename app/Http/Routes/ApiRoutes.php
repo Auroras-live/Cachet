@@ -75,13 +75,13 @@ class ApiRoutes
                 $router->post('schedules', 'ScheduleController@store');
                 $router->post('subscribers', 'SubscriberController@store');
 
-                $router->put('components/groups/{component_group}', 'ComponentGroupController@update');
-                $router->put('components/{component}', 'ComponentController@update');
-                $router->put('incidents/{incident}', 'IncidentController@update');
-                $router->put('incidents/{incident}/updates/{update}', 'IncidentUpdateController@update');
-                $router->put('metrics/{metric}', 'MetricController@update');
-                $router->put('metrics/{metric}/points/{metric_point}', 'MetricPointController@update');
-                $router->put('schedules/{schedule}', 'ScheduleController@update');
+                $router->match(['put', 'post'], 'components/groups/{component_group}', 'ComponentGroupController@update');
+                $router->match(['put', 'post'], 'components/{component}', 'ComponentController@update');
+                $router->match(['put', 'post'], 'incidents/{incident}', 'IncidentController@update');
+                $router->match(['put', 'post'], 'incidents/{incident}/updates/{update}', 'IncidentUpdateController@update');
+                $router->match(['put', 'post'], 'metrics/{metric}', 'MetricController@update');
+                $router->match(['put', 'post'], 'metrics/{metric}/points/{metric_point}', 'MetricPointController@update');
+                $router->match(['put', 'post'], 'schedules/{schedule}', 'ScheduleController@update');
 
                 $router->delete('components/groups/{component_group}', 'ComponentGroupController@destroy');
                 $router->delete('components/{component}', 'ComponentController@destroy');
